@@ -1,6 +1,6 @@
 /.env
 # Игнорировать папку idea
-idea/
+.idea
 
 # Игнорировать папку __pycache__
 __pycache__/
