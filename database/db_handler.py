@@ -2,7 +2,7 @@ import os
 
 import psycopg2
 from dotenv import load_dotenv
-from utils import db_config_parser
+from database.utils import db_config_parser
 
 from models.area import Area
 from models.employer import Employer
@@ -19,8 +19,8 @@ class DBHandler:
 
     def connect_to_db(self, conn_dbname):
         load_dotenv()
-        db_user = os.environ.get("postgres")
-        db_pass = os.environ.get("Aleksandr110460+")
+        db_user = os.environ.get("username")
+        db_pass = os.environ.get("password")
         host = self.db_config["host"]
         port = self.db_config["port"]
         connection = psycopg2.connect(
@@ -133,6 +133,8 @@ class DBHandler:
         try:
             with self.connect_to_db(conn_dbname) as connection:
                 with connection.cursor() as cursor:
+                    # Добавляем команду TRUNCATE TABLE vacancy; для удаления всех записей из таблицы
+                    cursor.execute("TRUNCATE TABLE vacancy;")
                     for item in areas:
                         cursor.execute(
                             "INSERT INTO area VALUES (%s, %s)", (
