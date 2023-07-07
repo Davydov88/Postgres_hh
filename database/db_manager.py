@@ -12,7 +12,7 @@ class DBManager(DBHandler):
         :rtype: list[tuple]
         """
         try:
-            with self.connect_to_db(conn_dbname="headhunter_vacancies") as connection:
+            with self.connect_to_db(conn_dbname="hh_vacancies") as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
                         "SELECT employer.name as employer, count(vacancy.id) "
@@ -33,7 +33,7 @@ class DBManager(DBHandler):
         :rtype: list[tuple]
         """
         try:
-            with self.connect_to_db(conn_dbname="headhunter_vacancies") as connection:
+            with self.connect_to_db(conn_dbname="hh_vacancies") as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
                         "SELECT employer.name as employer_name, "
@@ -58,7 +58,7 @@ class DBManager(DBHandler):
         :rtype: tuple
         """
         try:
-            with self.connect_to_db(conn_dbname="headhunter_vacancies") as connecton:
+            with self.connect_to_db(conn_dbname="hh_vacancies") as connecton:
                 with connecton.cursor() as cursor:
                     cursor.execute(
                         "SELECT "
@@ -78,7 +78,7 @@ class DBManager(DBHandler):
         :rtype: list[tuple]
         """
         try:
-            with self.connect_to_db(conn_dbname="headhunter_vacancies") as connection:
+            with self.connect_to_db(conn_dbname="hh_vacancies") as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
                         "SELECT vacancy.id, employer.name as employer_name, "
@@ -108,7 +108,7 @@ class DBManager(DBHandler):
         :rtype: list[tuple]
         """
         try:
-            with self.connect_to_db(conn_dbname="headhunter_vacancies") as connection:
+            with self.connect_to_db(conn_dbname="hh_vacancies") as connection:
                 with connection.cursor() as cursor:
                     query = 'SELECT vacancy.id, employer.name as employer_name,' \
                             'vacancy.name, ' \
