@@ -133,39 +133,33 @@ class DBHandler:
         try:
             with self.connect_to_db(conn_dbname) as connection:
                 with connection.cursor() as cursor:
-                    # Добавляем команду TRUNCATE TABLE vacancy; для удаления всех записей из таблицы
-                    cursor.execute("TRUNCATE TABLE vacancy;")
+                    # Обновление данных для существующих записей
                     for item in areas:
                         cursor.execute(
-                            "INSERT INTO area VALUES (%s, %s)", (
-                                item.id,
-                                item.name
-                            )
+                            "INSERT INTO area VALUES (%s, %s) "
+                            "ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name",
+                            (item.id, item.name)
                         )
 
                     for item in employers:
                         cursor.execute(
-                            "INSERT INTO employer VALUES (%s, %s, %s)", (
-                                item.id,
-                                item.name,
-                                item.employer_url
-                            )
+                            "INSERT INTO employer VALUES (%s, %s, %s) "
+                            "ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, employer_url = EXCLUDED.employer_url",
+                            (item.id, item.name, item.employer_url)
                         )
 
                     for item in experiences:
                         cursor.execute(
-                            "INSERT INTO experience VALUES (%s, %s)", (
-                                item.id,
-                                item.name
-                            )
+                            "INSERT INTO experience VALUES (%s, %s) "
+                            "ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name",
+                            (item.id, item.name)
                         )
 
                     for item in employments:
                         cursor.execute(
-                            "INSERT INTO employment VALUES (%s, %s)", (
-                                item.id,
-                                item.name
-                            )
+                            "INSERT INTO employment VALUES (%s, %s) "
+                            "ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name",
+                            (item.id, item.name)
                         )
 
                     for item in vacancies:
@@ -181,7 +175,17 @@ class DBHandler:
                             "%s, "
                             "%s, "
                             "%s"
-                            ")",
+                            ") "
+                            "ON CONFLICT (id) DO UPDATE SET "
+                            "name = EXCLUDED.name, "
+                            "area_id = EXCLUDED.area_id, "
+                            "salary_from = EXCLUDED.salary_from, "
+                            "salary_to = EXCLUDED.salary_to, "
+                            "vacancy_url = EXCLUDED.vacancy_url, "
+                            "employer_id = EXCLUDED.employer_id, "
+                            "requirement = EXCLUDED.requirement, "
+                            "experience_id = EXCLUDED.experience_id, "
+                            "employment = EXCLUDED.employment",
                             (
                                 item.id,
                                 item.name,
