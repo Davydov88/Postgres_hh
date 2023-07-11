@@ -24,7 +24,7 @@ class HHAPIHandler(APIHandlerABCClass):
             "area": 113,  # страна поиска Россия
             "search_field": "name",  # в какой обаласти вакансии
             "employer_id": [
-                "3809",
+                "1373",
                 "78638",
                 "1740",
                 "3776",
@@ -32,7 +32,7 @@ class HHAPIHandler(APIHandlerABCClass):
                 "3529",
                 "2104700",
                 "15478",
-                "4949",
+                "65",
                 "2180"
             ]
         }
@@ -64,7 +64,7 @@ class HHAPIHandler(APIHandlerABCClass):
         :rtype: list[dict]
         """
         eid_list: list = [
-            "3809",
+            "1373",
             "78638",
             "1740",
             "3776",
@@ -72,7 +72,7 @@ class HHAPIHandler(APIHandlerABCClass):
             "3529",
             "2104700",
             "15478",
-            "4949",
+            "65",
             "2180"
         ]
         employer_data = []

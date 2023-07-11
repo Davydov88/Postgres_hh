@@ -168,3 +168,4 @@ if __name__ == "__main__":
     db_handler.create_tables_getter(conn_dbname="hh_vacancies")
     db_handler.load_data_to_db_getter(conn_dbname="hh_vacancies")
     choose_db_manager_method()
+
